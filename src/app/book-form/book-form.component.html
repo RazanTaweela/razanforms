@@ -1,0 +1,51 @@
+<div class="container" >
+  <h1>Book Form:</h1>
+  <form #bookForm="ngForm">
+    <div>
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" required minlength="5" maxlength="30" [(ngModel)]="model.title" name="title" #title="ngModel">
+      <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+        <div [hidden]="!title.errors.required">
+          Book title is required
+        </div>
+        <div [hidden]="!title.errors.minlength">
+          titile must be at least 5 charecters long
+        </div>
+        <div [hidden]="!title.errors.maxlength">
+          titile cannot be more than 30 charecters long
+        </div>
+      </div>
+    </div>
+    <div>
+      <label for="author">Author</label>
+      <input type="text" class="form-control" id="author" required [(ngModel)]="model.auther" name="auther" #auther="ngModel">
+      <div *ngIf="auther.errors && (auther.dirty || auther.touched)" class="alert alert-danger">
+        <div [hidden]="!auther.errors.required">
+          Auther is required
+        </div>
+      </div> 
+    </div>
+    <div>
+      <label for="url">URL</label>
+      <input type="text" class="form-control" id="url" pattern="https?://.+"  [(ngModel)]="model.url" name="url" #url="ngModel">
+          <div *ngIf="url.errors && (url.dirty || url.touched)" class="alert alert-danger">
+            <div [hidden]="!url.errors.pattern">
+                URL must be a valid URL
+           </div>
+          </div> 
+    </div>
+   <br> <button type="submit" [disabled]="!bookForm.form.valid" class="btn btn-default bb">Submit</button>
+  </form>
+  <div>
+ 
+
+   <br><h2>Book Info:</h2>
+   <br><strong>Title:</strong> {{ Title }}
+
+    
+   <br><strong>Auther:</strong> {{ Auther }}
+   <br><strong>URL:</strong> {{ Url }}
+
+  </div>
+
+</div>
